@@ -6,6 +6,7 @@ import TodoList from './TodoList';
 import CategorySelector from './CategorySelector';
 import AIAssistant from './AIAssistant';
 import StatsDisplay from './StatsDisplay';
+import FilterBar from './FilterBar';
 
 export type Todo = {
   id: string;
@@ -139,35 +140,12 @@ const TodoApp: React.FC = () => {
           
           <div className="flex flex-col md:flex-row gap-6 mt-8">
             <div className="w-full md:w-3/4">
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex space-x-2">
-                  <button 
-                    onClick={() => setFilter('all')} 
-                    className={`px-4 py-2 rounded-lg transition-all ${filter === 'all' ? 'bg-indigo-600 text-white' : 'bg-indigo-600/30 text-indigo-200 hover:bg-indigo-600/50'}`}
-                  >
-                    All
-                  </button>
-                  <button 
-                    onClick={() => setFilter('active')} 
-                    className={`px-4 py-2 rounded-lg transition-all ${filter === 'active' ? 'bg-indigo-600 text-white' : 'bg-indigo-600/30 text-indigo-200 hover:bg-indigo-600/50'}`}
-                  >
-                    Active
-                  </button>
-                  <button 
-                    onClick={() => setFilter('completed')} 
-                    className={`px-4 py-2 rounded-lg transition-all ${filter === 'completed' ? 'bg-indigo-600 text-white' : 'bg-indigo-600/30 text-indigo-200 hover:bg-indigo-600/50'}`}
-                  >
-                    Completed
-                  </button>
-                </div>
-                <button
-                  onClick={() => setShowAI(!showAI)}
-                  className="flex items-center space-x-1 bg-purple-600/60 hover:bg-purple-600/80 text-white px-3 py-2 rounded-lg transition-all"
-                >
-                  <span>AI</span>
-                  <span className="text-lg">🤖</span>
-                </button>
-              </div>
+              <FilterBar 
+                filter={filter} 
+                setFilter={setFilter} 
+                showAI={showAI}
+                setShowAI={setShowAI}
+              />
               
               {showAI && <AIAssistant 
                 suggestion={aiSuggestion} 
