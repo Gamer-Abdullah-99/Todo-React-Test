@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FiSend, FiZap } from 'react-icons/fi';
 
 interface AIAssistantProps {
   suggestion: string;
@@ -42,13 +43,23 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ suggestion, onProcess }) => {
         <button
           type="submit"
           disabled={isProcessing}
-          className={`px-4 py-2 rounded-lg transition-all ${
+          className={`px-4 py-2 rounded-lg transition-all flex items-center ${
             isProcessing 
               ? 'bg-indigo-700/50 text-indigo-200/70' 
               : 'bg-indigo-600 text-white hover:bg-indigo-700'
           }`}
         >
-          {isProcessing ? 'Processing...' : 'Process'}
+          {isProcessing ? (
+            <>
+              <FiZap className="animate-pulse mr-1" />
+              Processing...
+            </>
+          ) : (
+            <>
+              <FiSend className="mr-1" />
+              Process
+            </>
+          )}
         </button>
       </form>
       
