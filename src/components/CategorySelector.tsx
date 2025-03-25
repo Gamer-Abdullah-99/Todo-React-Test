@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiFolder, FiGlobe } from 'react-icons/fi';
 import { Category } from './TodoApp';
 
 interface CategorySelectorProps {
@@ -22,28 +23,38 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
       <div className="space-y-2">
         <button
           onClick={() => setActiveCategory('all')}
-          className={`w-full text-left px-3 py-2 rounded-lg transition-all flex items-center ${
+          className={`w-full text-left px-3 py-2 rounded-lg transition-all flex items-center justify-between ${
             activeCategory === 'all' 
               ? 'bg-indigo-600/60 text-white' 
               : 'hover:bg-slate-700/50 text-purple-200'
           }`}
         >
-          <span className="mr-2">🔭</span>
-          All Tasks
+          <div className="flex items-center">
+            <FiGlobe className="mr-2" />
+            <span>All Tasks</span>
+          </div>
+          <div className="bg-slate-900/50 px-2 py-0.5 rounded-full text-xs">
+            All
+          </div>
         </button>
         
         {categories.map(category => (
           <button
             key={category.id}
             onClick={() => setActiveCategory(category.id)}
-            className={`w-full text-left px-3 py-2 rounded-lg transition-all flex items-center ${
+            className={`w-full text-left px-3 py-2 rounded-lg transition-all flex items-center justify-between ${
               activeCategory === category.id 
                 ? 'bg-indigo-600/60 text-white' 
                 : 'hover:bg-slate-700/50 text-purple-200'
             }`}
           >
-            <span className="mr-2">{category.icon}</span>
-            {category.name}
+            <div className="flex items-center">
+              <span className="mr-2">{category.icon}</span>
+              <span>{category.name}</span>
+            </div>
+            <div className={`${category.color} bg-opacity-30 px-2 py-0.5 rounded-full text-xs`}>
+              <FiFolder className="inline-block" />
+            </div>
           </button>
         ))}
       </div>
