@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiPieChart, FiCheck, FiClock, FiActivity } from 'react-icons/fi';
 
 interface StatsProps {
   stats: {
@@ -28,7 +29,10 @@ const StatsDisplay: React.FC<StatsProps> = ({ stats }) => {
       <div className="space-y-4">
         <div>
           <div className="flex justify-between text-sm text-purple-200 mb-1">
-            <span>Task Completion</span>
+            <span className="flex items-center">
+              <FiActivity className="mr-1" />
+              Task Completion
+            </span>
             <span>{completionPercentage}%</span>
           </div>
           <div className="w-full bg-slate-700/50 rounded-full h-2.5">
@@ -41,18 +45,27 @@ const StatsDisplay: React.FC<StatsProps> = ({ stats }) => {
         
         <div className="grid grid-cols-2 gap-2">
           <div className="bg-indigo-900/30 rounded-lg p-3 border border-indigo-500/20">
+            <div className="flex items-center text-xs text-indigo-400 mb-1">
+              <FiClock className="mr-1" />
+              Active Tasks
+            </div>
             <div className="text-3xl text-indigo-300 font-bold">{stats.active}</div>
-            <div className="text-xs text-indigo-400">Active Tasks</div>
           </div>
           
           <div className="bg-purple-900/30 rounded-lg p-3 border border-purple-500/20">
+            <div className="flex items-center text-xs text-purple-400 mb-1">
+              <FiCheck className="mr-1" />
+              Completed
+            </div>
             <div className="text-3xl text-purple-300 font-bold">{stats.completed}</div>
-            <div className="text-xs text-purple-400">Completed</div>
           </div>
         </div>
         
         <div>
-          <h4 className="text-sm font-medium text-purple-300 mb-2">By Category</h4>
+          <h4 className="text-sm font-medium text-purple-300 mb-2 flex items-center">
+            <FiPieChart className="mr-1" />
+            By Category
+          </h4>
           {stats.byCategory.map((cat, index) => (
             <div key={index} className="mb-2">
               <div className="flex justify-between text-xs text-purple-200 mb-1">
